@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-black text-dark-300 font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-image: radial-gradient(circle at center, #111 0%, #000 100%);
+    min-height: 100vh;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-black;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary-800 rounded-none;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-600;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-dark-900/80 border border-primary-500/30 p-6 relative transition-all duration-300 hover:border-primary-500/80 rounded-none backdrop-blur-sm;
+  }
+
+  /* Art Deco Corner Accents for Cards */
+  .card::before, .card::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 1px solid theme('colors.primary.400');
+    transition: all 0.3s ease;
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  .card::before {
+    top: -1px;
+    left: -1px;
+    border-bottom: none;
+    border-right: none;
+  }
+
+  .card::after {
+    bottom: -1px;
+    right: -1px;
+    border-top: none;
+    border-left: none;
+  }
+
+  .card:hover::before, .card:hover::after {
+    width: 20px;
+    height: 20px;
+    opacity: 1;
+    border-color: theme('colors.primary.500');
+  }
+
+  .card-glow {
+    @apply card shadow-[0_0_15px_rgba(234,179,8,0.05)] hover:shadow-[0_0_25px_rgba(234,179,8,0.15)];
+  }
+
+  .btn-primary {
+    @apply bg-primary-500 hover:bg-primary-600 text-black font-bold uppercase tracking-widest text-sm px-6 py-3 rounded-none transition-all duration-300 border-2 border-primary-500 hover:border-primary-400 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_10px_rgba(234,179,8,0.2)] hover:shadow-[0_0_20px_rgba(234,179,8,0.4)];
+  }
+
+  .btn-secondary {
+    @apply bg-transparent hover:bg-primary-500/10 text-primary-500 font-bold uppercase tracking-widest text-sm px-5 py-2.5 rounded-none transition-all duration-300 border border-primary-500/50 hover:border-primary-500 shadow-[inset_0_0_0_rgba(234,179,8,0)] hover:shadow-[inset_0_0_10px_rgba(234,179,8,0.1)];
+  }
+
+  .btn-ghost {
+    @apply bg-transparent hover:bg-dark-900 text-primary-400 hover:text-primary-300 font-medium tracking-wide uppercase text-xs px-4 py-2 rounded-none transition-all duration-300 border border-transparent hover:border-primary-500/30;
+  }
+
+  .btn-danger {
+    @apply bg-transparent hover:bg-red-500/10 text-red-500 font-bold uppercase tracking-widest text-sm px-5 py-2.5 rounded-none transition-all duration-300 border border-red-500/50 hover:border-red-500;
+  }
+
+  .input-field {
+    @apply bg-black border border-dark-700 text-primary-100 rounded-none px-4 py-3 w-full transition-all duration-300 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500/50 placeholder:text-dark-600 font-sans;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-none text-xs font-bold uppercase tracking-widest border;
+  }
+
+  .badge-primary {
+    @apply bg-primary-500/10 text-primary-400 border-primary-500/30;
+  }
+
+  .badge-success {
+    @apply bg-emerald-500/10 text-emerald-400 border-emerald-500/30;
+  }
+
+  .badge-warning {
+    @apply bg-amber-500/10 text-amber-400 border-amber-500/30;
+  }
+
+  .badge-danger {
+    @apply bg-red-500/10 text-red-400 border-red-500/30;
+  }
+
+  .glass {
+    @apply bg-black/80 backdrop-blur-md border-b border-primary-500/20;
+  }
+
+  .stat-card {
+    @apply card flex flex-col items-center justify-center text-center p-5 min-w-[120px];
+  }
+
+  .nav-link {
+    @apply flex items-center gap-2 px-4 py-2 rounded-none text-xs font-bold uppercase tracking-widest text-dark-400 hover:text-primary-400 hover:bg-dark-900 border border-transparent transition-all duration-300;
+  }
+
+  .nav-link.active {
+    @apply text-primary-500 bg-primary-500/5 border-primary-500/30;
+  }
+
+  .emotion-bar {
+    @apply h-1.5 rounded-none transition-all duration-500 bg-gradient-to-r from-primary-600 to-primary-400;
+  }
+
+  .loading-skeleton {
+    @apply bg-dark-900 border border-dark-800 rounded-none animate-pulse;
+  }
+
+  .page-header {
+    @apply mb-8 border-b border-primary-500/20 pb-4 relative;
+  }
+  
+  .page-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 40px;
+    height: 1px;
+    background-color: theme('colors.primary.500');
+  }
+
+  .page-title {
+    @apply text-3xl font-light text-primary-500 mb-1 uppercase tracking-[0.2em];
+  }
+
+  .page-subtitle {
+    @apply text-dark-400 text-xs uppercase tracking-widest;
+  }
+
+  .toggle-switch {
+    @apply relative inline-flex h-5 w-10 items-center rounded-none border border-primary-500/50 bg-black transition-colors duration-300 cursor-pointer;
+  }
+
+  .toggle-switch-dot {
+    @apply inline-block h-3 w-3 transform bg-primary-500 transition-transform duration-300 shadow-sm mx-1 rounded-none;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-300 via-primary-500 to-primary-600 bg-clip-text text-transparent;
+  }
+
+  .glow-primary {
+    box-shadow: 0 0 15px rgba(234, 179, 8, 0.2),
+                0 0 40px rgba(234, 179, 8, 0.05);
+  }
+
+  .glow-sm {
+    box-shadow: 0 0 8px rgba(234, 179, 8, 0.15);
+  }
+}
+
+/* Force text colors for specific elements that have hardcoded white text in tailwind classes but should be gold */
+h1[class~="text-white"], 
+h2[class~="text-white"], 
+h3[class~="text-white"], 
+h4[class~="text-white"], 
+p[class~="text-white"] {
+  color: theme('colors.primary.500') !important;
+}
+
+span[class~="text-white"], 
+div[class~="text-white"] {
+  color: theme('colors.primary.100') !important;
+}
+
+.btn-primary[class~="text-white"],
+.btn-primary [class~="text-white"] {
+  color: #000000 !important;
+}
+
+/* Icons inside cards styling styled to loosely match image */
+.card svg.lucide {
+  color: theme('colors.primary.500');
+}
+
+/* Live indicator pulse */
+.live-dot {
+  @apply w-2 h-2 bg-primary-500 rounded-none;
+  animation: livePulse 2s ease-in-out infinite;
+}
+
+@keyframes livePulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(234, 179, 8, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(234, 179, 8, 0);
+  }
+}
+
+/* Progress bar animation */
+.progress-bar-animated {
+  animation: progressGrow 1.5s ease-out forwards;
+}
+
+@keyframes progressGrow {
+  from { width: 0%; }
+}
+
+/* Webcam container */
+.webcam-container {
+  @apply relative overflow-hidden rounded-none border border-primary-500/30 bg-black p-1;
+}
+
+.webcam-container video {
+  @apply w-full h-full object-cover rounded-none;
+}
+
+/* Modal overlay */
+.modal-overlay {
+  @apply fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content {
+  @apply bg-black border border-primary-500/50 rounded-none shadow-[0_0_30px_rgba(234,179,8,0.1)] w-full max-w-lg relative;
+  animation: scaleIn 0.2s ease-out;
+}
+
+/* Custom corner accents for Modals */
+.modal-content::before, .modal-content::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 1px solid theme('colors.primary.500');
+  pointer-events: none;
+}
+.modal-content::before {
+  top: -1px; left: -1px; border-bottom: none; border-right: none;
+}
+.modal-content::after {
+  bottom: -1px; right: -1px; border-top: none; border-left: none;
+}
+
+/* Recharts customization */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: #27272a;
+  stroke-dasharray: 4 4;
+}
+
+.recharts-text {
+  fill: #a1a1aa !important;
+  font-size: 11px;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.recharts-tooltip-wrapper {
+  outline: none;
+}

@@ -1,0 +1,32 @@
+# Node modules and build files
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+
+# Python Virtual Environments and Cache
+backend/venv/
+backend/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment Variables (Secrets)
+.env
+.env.*
+*.env
+*.env.local
+
+# API Credentials
+kaggle.json
+
+# Large AI Model Files / Notebooks
+*.h5
+*.hdf5
+backend/ai_model/
+*.ipynb
+
+# IDE and OS specific files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
